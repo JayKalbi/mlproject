@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "CloudFormation template to deploy an Elastic Beanstalk environment"
+
+Resources:
+  MyElasticBeanstalkApplication:
+    Type: "AWS::ElasticBeanstalk::Application"
+    Properties:
+      ApplicationName: "MyEBApp"
+
+  MyElasticBeanstalkEnvironment:
+    Type: "AWS::ElasticBeanstalk::Environment"
+    Properties:
+      ApplicationName: !Ref MyElasticBeanstalkApplication
+      EnvironmentName: "MyEBEnv"
+      SolutionStackName: "64bit Amazon Linux 2 v3.4.3 running Python 3.8"
+      OptionSettings:
+        - Namespace: "aws:elasticbeanstalk:environment"
+          OptionName: "EnvironmentType"
+          Value: "SingleInstance"
+        - Namespace: "aws:autoscaling:launchconfiguration"
+          OptionName: "IamInstanceProfile"
+          Value: "aws-elasticbeanstalk-ec2-role"
