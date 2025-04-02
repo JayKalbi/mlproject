@@ -1,17 +1,11 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Resources:
   
-  # Elastic Beanstalk Application
-  ElasticBeanstalkApplication:
-    Type: 'AWS::ElasticBeanstalk::Application'
-    Properties:
-      ApplicationName: "student"
-  
-  # Elastic Beanstalk Environment
+  # Elastic Beanstalk Environment (Use existing application)
   ElasticBeanstalkEnvironment:
     Type: 'AWS::ElasticBeanstalk::Environment'
     Properties:
-      ApplicationName: !Ref ElasticBeanstalkApplication
+      ApplicationName: "student"  # Use existing application name
       EnvironmentName: "Student-env"
       SolutionStackName: "Python 3.12 running on 64bit Amazon Linux 2023 v4.5.0"
 
@@ -22,3 +16,6 @@ Resources:
         - Namespace: "aws:autoscaling:asg"
           OptionName: "MaxSize"
           Value: "4"
+        - Namespace: "aws:autoscaling:launchconfiguration"
+          OptionName: "IamInstanceProfile"
+          Value: "aws-elasticbeanstalk-ec2-role"  # Ensure this role exists
