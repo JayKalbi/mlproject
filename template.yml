@@ -12,7 +12,7 @@ Resources:
     Type: 'AWS::ElasticBeanstalk::Environment'
     Properties:
       ApplicationName: !Ref ElasticBeanstalkApplication
-      EnvironmentName: "student"
+      EnvironmentName: "student-env"
       SolutionStackName: "Python 3.12 running on 64bit Amazon Linux 2023 v4.5.0"
 
       # Use existing Elastic Beanstalk Service Role
