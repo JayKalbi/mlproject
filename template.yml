@@ -15,9 +15,6 @@ Resources:
       EnvironmentName: "Student-env"
       SolutionStackName: "Python 3.12 running on 64bit Amazon Linux 2023 v4.5.0"
 
-      # Use existing Elastic Beanstalk Service Role
-      ServiceRole: "arn:aws:iam::825765388635:role/aws-elasticbeanstalk-service-role"
-
       OptionSettings:
         - Namespace: "aws:autoscaling:asg"
           OptionName: "MinSize"
@@ -25,6 +22,3 @@ Resources:
         - Namespace: "aws:autoscaling:asg"
           OptionName: "MaxSize"
           Value: "4"
-        - Namespace: "aws:elasticbeanstalk:environment"
-          OptionName: "ServiceRole"
-          Value: "arn:aws:iam::825765388635:role/aws-elasticbeanstalk-service-role"
